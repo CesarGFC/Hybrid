@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-text-center">Detalles</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label>{{prod.name}}</ion-label>
+    <ion-item *ngIf="prod.active">
+      <ion-label color="success">(Adquirido)</ion-label>
+    </ion-item>
+    <ion-item *ngIf="!prod.active">
+      <ion-label color="danger">(No adquirido)</ion-label>
+    </ion-item>
+  </ion-item>
+  <ion-item>
+    <ion-label>Caracteristicas: {{prod.descrip}}</ion-label>
+  </ion-item>
+</ion-content>

@@ -1,0 +1,39 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title class="ion-text-center">
+      Todos los articulos
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  
+  <ion-list>
+    <div *ngFor="let prod of prods; index as i">
+      <ion-item-sliding (ionSwipe)="changeStatus(i)"(click)="verDetalles(prod)">      
+        <ion-item>
+          <ion-label>{{prod.name}}</ion-label>
+          <ion-chip color="success" *ngIf="prod.active">
+            <ion-label>Adquirido</ion-label>
+          </ion-chip>
+          <ion-chip color="danger" *ngIf="!prod.active">
+            <ion-label>Sin adquirir</ion-label>
+          </ion-chip>
+        </ion-item>
+        <ion-item-options>
+        </ion-item-options>
+      </ion-item-sliding> 
+    </div>
+  </ion-list>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button color="success" (click)="newprod()">
+        <ion-icon name="add-circle-sharp"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+
+</ion-content>

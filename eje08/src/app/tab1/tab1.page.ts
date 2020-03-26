@@ -10,8 +10,13 @@ import { Router, NavigationExtras } from '@angular/router';
 })
 export class Tab1Page {
   prods: Prod[] = [];
+  search: string;
 
   constructor(private productService: ProductService, private router: Router) {
+    this.prods = this.productService.getProd();
+    this.clearSearch();
+  }
+  private clearSearch(): void {
     this.prods = this.productService.getProd();
   }
 
@@ -24,5 +29,15 @@ export class Tab1Page {
   }
   verDetalles(prod: Prod) {
     this.productService.verDetalles(prod);
+  }
+  filter(): void {
+    this.clearSearch();
+
+    if (this.search && this.search.trim()) {
+      this.prods = this.prods.filter((prod) => {
+        return ((prod.name.toLocaleLowerCase().indexOf(this.search.toLocaleLowerCase()) > -1)
+          || (prod.descrip.toLocaleLowerCase().indexOf(this.search.toLocaleLowerCase()) > -1));
+      });
+    }
   }
 }

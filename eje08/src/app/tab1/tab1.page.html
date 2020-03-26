@@ -7,10 +7,15 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
-  
+
   <ion-list>
+    <ion-item>
+      <ion-label position="floating" color="tertiary">Buscar</ion-label>
+      <ion-input type="text" [(ngModel)]="search" (keyup)="filter()"></ion-input>
+    </ion-item>
+
     <div *ngFor="let prod of prods; index as i">
-      <ion-item-sliding (ionSwipe)="changeStatus(i)"(click)="verDetalles(prod)">      
+      <ion-item-sliding (ionSwipe)="changeStatus(i)" (click)="verDetalles(prod)">
         <ion-item>
           <ion-label>{{prod.name}}</ion-label>
           <ion-chip color="success" *ngIf="prod.active">
@@ -20,9 +25,12 @@
             <ion-label>Sin adquirir</ion-label>
           </ion-chip>
         </ion-item>
-        <ion-item-options>
+
+        <ion-item-options side="start">
         </ion-item-options>
-      </ion-item-sliding> 
+        <ion-item-options side="end">
+        </ion-item-options>
+      </ion-item-sliding>
     </div>
   </ion-list>
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
